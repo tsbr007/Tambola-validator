@@ -2,6 +2,7 @@ package com.tambola.service;
 
 import com.tambola.model.GameType;
 import com.tambola.service.rules.BottomLineRule;
+import com.tambola.service.rules.CornerClaimRule;
 import com.tambola.service.rules.EarlyFiveRule;
 import com.tambola.service.rules.FullHouseRule;
 import com.tambola.service.rules.GameClaimRule;
@@ -30,6 +31,8 @@ public class ClaimRuleFactory {
                 new FullHouseRule();
             case EARLY_FIVE ->
                 new EarlyFiveRule();
+            case CORNER_CLAIM ->
+                new CornerClaimRule();
         };
     }
 }

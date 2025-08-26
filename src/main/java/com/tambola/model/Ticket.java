@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ticket {
 
-    private final int[][]  grid;
+    private final int[][] grid;
 
     public Ticket(int[][] grid) {
         this.grid = grid;
@@ -15,9 +15,9 @@ public class Ticket {
         return grid;
     }
 
-public List<Integer> getTopRow() {
+    public List<Integer> getTopRow() {
         return extractRow(0);
-}
+    }
 
     public List<Integer> getMiddleRow() {
         return extractRow(1);
@@ -28,7 +28,7 @@ public List<Integer> getTopRow() {
     }
 
     public List<Integer> getCorners() {
-        return extractRow(2);
+        return extractCorners();
     }
 
     public List<Integer> getAllNumbers() {
@@ -52,41 +52,43 @@ public List<Integer> getTopRow() {
 
     private List<Integer> extractCorners() {
         List<Integer> list = new ArrayList<>();
+        boolean topleft= false, topRight= false,bottomLeft= false, bottomRight= false;
         for (int col = 0; col < 9; col++) {
-            boolean firstRow = false;
-            boolean lastRow = false;
-
-            if(grid[0][col] != -1) {
-                firstRow =  true;
+            int check = grid[0][col];
+            if (!topleft && check != -1) {
+                topleft = true;
                 list.add(grid[0][col]);
             }
-
-            if(grid[2][col] != -1) {
-                lastRow =  true;
+            int check2 = grid[2][col];
+            if (!bottomLeft && check2 != -1) {
+                bottomLeft = true;
                 list.add(grid[2][col]);
             }
 
-            
+            if (topleft && bottomLeft) {
+                break;
+            }
+
         }
 
-        for (int col = 8; col <= 0; col--) {
-            boolean firstRow = false;
-            boolean lastRow = false;
-
-            if(grid[0][col] != -1) {
-                firstRow =  true;
+        for (int col = 8; col >= 0; col--) {
+            int check = grid[0][col];
+            if (!topRight && check != -1) {
+                topRight = true;
                 list.add(grid[0][col]);
             }
-
-            if(grid[2][col] != -1) {
-                lastRow =  true;
+            int check2 = grid[2][col];
+            if (!bottomRight && check2 != -1) {
+                bottomRight = true;
                 list.add(grid[2][col]);
             }
 
-            
+            if (topRight && bottomRight) {
+                break;
+            }
+
         }
         return list;
     }
-
 
 }

@@ -28,10 +28,10 @@ public class TambolaClaimValidatorApplication implements CommandLineRunner {
         };
 
         // Make sure these 5 numbers exist in the ticket grid
-        List<Integer> announced = Arrays.asList(90, 4, 76, 7, 9, 16);
+        List<Integer> announced = Arrays.asList(90, 4, 76, 7, 9, 83);
         // Matching ticket numbers: 4, 76, 7, 9, 16 — fifth match is 16
 
-        Claim claim = new Claim(new Ticket(grid), announced, GameType.EARLY_FIVE);
+        Claim claim = new Claim(new Ticket(grid), announced, GameType.CORNER_CLAIM);
         ClaimValidator validator = new ClaimValidator();
 
         boolean result = validator.validateClaim(claim);
