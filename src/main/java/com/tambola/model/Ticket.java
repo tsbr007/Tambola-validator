@@ -52,43 +52,32 @@ public class Ticket {
 
     private List<Integer> extractCorners() {
         List<Integer> list = new ArrayList<>();
-        boolean topleft= false, topRight= false,bottomLeft= false, bottomRight= false;
+        boolean topleft = false, topRight = false, bottomLeft = false, bottomRight = false;
         for (int col = 0; col < 9; col++) {
-            int check = grid[0][col];
-            if (!topleft && check != -1) {
-                topleft = true;
-                list.add(grid[0][col]);
-            }
-            int check2 = grid[2][col];
-            if (!bottomLeft && check2 != -1) {
-                bottomLeft = true;
-                list.add(grid[2][col]);
-            }
-
-            if (topleft && bottomLeft) {
-                break;
-            }
+            if (buildArray(topleft, col, list, bottomLeft)) break;
 
         }
 
         for (int col = 8; col >= 0; col--) {
-            int check = grid[0][col];
-            if (!topRight && check != -1) {
-                topRight = true;
-                list.add(grid[0][col]);
-            }
-            int check2 = grid[2][col];
-            if (!bottomRight && check2 != -1) {
-                bottomRight = true;
-                list.add(grid[2][col]);
-            }
-
-            if (topRight && bottomRight) {
-                break;
-            }
+            if (buildArray(topRight, col, list, bottomRight)) break;
 
         }
         return list;
+    }
+
+    private boolean buildArray(boolean top, int col, List<Integer> list, boolean bottom) {
+        if (!top && grid[0][col] != -1) {
+            top = true;
+            list.add(grid[0][col]);
+        }
+        if (!bottom && grid[2][col] != -1) {
+            bottom = true;
+            list.add(grid[2][col]);
+        }
+        if (top && bottom) {
+            return true;
+        }
+        return false;
     }
 
 }
