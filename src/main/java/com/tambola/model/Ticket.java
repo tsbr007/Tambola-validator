@@ -5,21 +5,29 @@ import java.util.List;
 
 public class Ticket {
 
-    private final int[][] grid;
+    private final int[][]  grid;
 
     public Ticket(int[][] grid) {
         this.grid = grid;
     }
 
-    public List<Integer> getTopRow() {
-        return extractRow(0);
+    public int[][] getGrid() {
+        return grid;
     }
+
+public List<Integer> getTopRow() {
+        return extractRow(0);
+}
 
     public List<Integer> getMiddleRow() {
         return extractRow(1);
     }
 
     public List<Integer> getBottomRow() {
+        return extractRow(2);
+    }
+
+    public List<Integer> getCorners() {
         return extractRow(2);
     }
 
@@ -41,4 +49,44 @@ public class Ticket {
         }
         return list;
     }
+
+    private List<Integer> extractCorners() {
+        List<Integer> list = new ArrayList<>();
+        for (int col = 0; col < 9; col++) {
+            boolean firstRow = false;
+            boolean lastRow = false;
+
+            if(grid[0][col] != -1) {
+                firstRow =  true;
+                list.add(grid[0][col]);
+            }
+
+            if(grid[2][col] != -1) {
+                lastRow =  true;
+                list.add(grid[2][col]);
+            }
+
+            
+        }
+
+        for (int col = 8; col <= 0; col--) {
+            boolean firstRow = false;
+            boolean lastRow = false;
+
+            if(grid[0][col] != -1) {
+                firstRow =  true;
+                list.add(grid[0][col]);
+            }
+
+            if(grid[2][col] != -1) {
+                lastRow =  true;
+                list.add(grid[2][col]);
+            }
+
+            
+        }
+        return list;
+    }
+
+
 }

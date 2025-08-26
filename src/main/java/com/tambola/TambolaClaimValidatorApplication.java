@@ -35,7 +35,7 @@ public class TambolaClaimValidatorApplication implements CommandLineRunner {
         ClaimValidator validator = new ClaimValidator();
 
         boolean result = validator.validateClaim(claim);
-        System.out.println("Result: " + (result ? "✅ Accepted" : "❌ Rejected"));
+        System.out.println("Result: " + (result ? "  Accepted" : " Rejected"));
     }
 
 }

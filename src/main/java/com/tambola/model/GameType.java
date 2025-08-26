@@ -5,5 +5,6 @@ public enum GameType {
     MIDDLE_LINE,
     BOTTOM_LINE,
     FULL_HOUSE,
-    EARLY_FIVE
+    EARLY_FIVE,
+    CORNER_CLAIM
 }
